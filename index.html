@@ -1,0 +1,704 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>URCOBRA - Recuperação de Crédito</title>
+    <script type="module" crossorigin src="./assets/index-DXJpNTWg.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-IcwXjHsF.css">
+    <style>
+      /* Header fixo e organizado */
+      header, .header, [class*="header"], nav, .nav {
+        position: sticky !important;
+        top: 0 !important;
+        z-index: 9999 !important;
+        width: 100% !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+        padding: 10px 20px !important;
+        box-sizing: border-box !important;
+      }
+      
+      /* Aumentar a logo */
+      header img, .header img, [class*="header"] img,
+      header .logo, .header .logo, [class*="logo"] {
+        height: 50px !important;
+        width: auto !important;
+        max-height: 60px !important;
+      }
+      
+      /* Centralizar o menu de navegação */
+      header nav, .header nav, [class*="header"] nav,
+      header .menu, .header .menu, [class*="menu"],
+      header ul, .header ul, [class*="header"] ul {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 30px !important;
+        margin: 0 auto !important;
+        flex: 1 !important;
+        list-style: none !important;
+      }
+      
+      /* Organizar botões lado a lado no header - alinhados à direita */
+      header .buttons, .header .buttons, [class*="header"] .buttons,
+      header .cta, .header .cta, [class*="cta"],
+      header div:last-child, .header div:last-child {
+        display: flex !important;
+        align-items: center !important;
+        gap: 12px !important;
+        flex-shrink: 0 !important;
+        margin-left: auto !important;
+        margin-right: 20px !important;
+      }
+      
+      /* Botões do header com mesmo tamanho e espaçamento */
+      header button, .header button, [class*="header"] button,
+      header a[class*="button"], .header a[class*="button"],
+      header a, .header a {
+        white-space: nowrap !important;
+        padding: 10px 20px !important;
+      }
+      
+      /* Ajustes para reduzir espaçamento entre header e títulos da hero */
+      #hero, .hero, [class*="hero"], section:first-of-type {
+        padding-top: 20px !important;
+        margin-top: 0 !important;
+      }
+      
+      /* Títulos da hero mais próximos do topo */
+      #hero h1, .hero h1, [class*="hero"] h1,
+      #hero h2, .hero h2, [class*="hero"] h2,
+      section:first-of-type h1, section:first-of-type h2 {
+        margin-top: 20px !important;
+        padding-top: 0 !important;
+      }
+      
+      /* Reduzir margens superiores de containers da hero */
+      #hero .container, .hero .container,
+      [class*="hero"] .container,
+      #hero > div, .hero > div {
+        margin-top: 0 !important;
+        padding-top: 40px !important;
+      }
+      
+      /* Ajuste para sliders/carrossel na hero */
+      .slider, [class*="slider"], .carousel, [class*="carousel"] {
+        margin-top: 0 !important;
+        padding-top: 60px !important;
+      }
+      
+      /* Botão moderno Logar/Criar Conta */
+      .btn-login-modern {
+        position: relative !important;
+        overflow: hidden !important;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+        color: white !important;
+        border: none !important;
+        border-radius: 50px !important;
+        padding: 12px 28px !important;
+        font-weight: 600 !important;
+        font-size: 14px !important;
+        letter-spacing: 0.5px !important;
+        text-transform: uppercase !important;
+        cursor: pointer !important;
+        box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4) !important;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+        text-decoration: none !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 8px !important;
+      }
+      
+      /* Efeito de brilho no hover */
+      .btn-login-modern::before {
+        content: '' !important;
+        position: absolute !important;
+        top: 0 !important;
+        left: -100% !important;
+        width: 100% !important;
+        height: 100% !important;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent) !important;
+        transition: left 0.5s ease !important;
+      }
+      
+      .btn-login-modern:hover::before {
+        left: 100% !important;
+      }
+      
+      /* Hover effects */
+      .btn-login-modern:hover {
+        transform: translateY(-3px) scale(1.02) !important;
+        box-shadow: 0 8px 25px rgba(102, 126, 234, 0.6) !important;
+        background: linear-gradient(135deg, #764ba2 0%, #667eea 100%) !important;
+      }
+      
+      .btn-login-modern:active {
+        transform: translateY(-1px) scale(0.98) !important;
+        box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4) !important;
+      }
+      
+      /* Animação de pulso sutil */
+      @keyframes pulse-subtle {
+        0%, 100% { box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4); }
+        50% { box-shadow: 0 4px 20px rgba(102, 126, 234, 0.6); }
+      }
+      
+      .btn-login-modern {
+        animation: pulse-subtle 3s ease-in-out infinite !important;
+      }
+      
+      .btn-login-modern:hover {
+        animation: none !important;
+      }
+      
+      /* Menu Mobile - Ícone Branco Sem Background */
+      @media screen and (max-width: 768px) {
+        /* Remove padding excessivo do inicio */
+        #inicio, section#inicio {
+          padding-top: 0 !important;
+          margin-top: 0 !important;
+        }
+        
+        /* Oculta menu desktop */
+        header nav, .header nav, header .menu, .header .menu, header ul, .header ul {
+          display: none !important;
+        }
+
+        /* Botão Hambúrguer - Branco e Limpo */
+        .menu-toggle {
+          display: flex !important;
+          flex-direction: column !important;
+          justify-content: center !important;
+          align-items: center !important;
+          gap: 5px !important;
+          width: 30px !important;
+          height: 30px !important;
+          background: transparent !important;
+          border: none !important;
+          cursor: pointer !important;
+          padding: 0 !important;
+          z-index: 10001 !important;
+        }
+
+        .menu-toggle span {
+          display: block !important;
+          width: 24px !important;
+          height: 2px !important;
+          background: #ffffff !important;
+          border-radius: 2px !important;
+          transition: all 0.3s ease !important;
+        }
+
+        /* Menu Lateral (Drawer) */
+        .mobile-nav-panel {
+          position: fixed !important;
+          top: 0 !important;
+          left: 0 !important;
+          bottom: 0 !important;
+          width: 70% !important;
+          max-width: 260px !important;
+          background: #1a365d !important;
+          transform: translateX(-100%) !important;
+          transition: transform 0.3s ease !important;
+          z-index: 10000 !important;
+          padding: 70px 20px 20px !important;
+          display: flex !important;
+          flex-direction: column !important;
+          gap: 10px !important;
+        }
+
+        .mobile-nav-panel.active {
+          transform: translateX(0) !important;
+        }
+
+        .mobile-nav-panel a {
+          color: white !important;
+          font-size: 16px !important;
+          padding: 12px 0 !important;
+          border-bottom: 1px solid rgba(255,255,255,0.1) !important;
+          text-decoration: none !important;
+        }
+
+        /* Overlay */
+        .menu-overlay {
+          position: fixed !important;
+          top: 0 !important;
+          left: 0 !important;
+          right: 0 !important;
+          bottom: 0 !important;
+          background: rgba(0,0,0,0.5) !important;
+          opacity: 0 !important;
+          visibility: hidden !important;
+          transition: all 0.3s ease !important;
+          z-index: 9999 !important;
+        }
+
+        .menu-overlay.active {
+          opacity: 1 !important;
+          visibility: visible !important;
+        }
+      }
+      
+      /* Hero Moderno e Responsivo - FORÇADO */
+      @media screen and (max-width: 768px) {
+        /* Hero sem padding superior */
+        #hero, .hero, section#hero, div#hero, [class*="hero-section"], [class*="hero_container"] {
+          padding-top: 0 !important;
+          margin-top: 0 !important;
+          min-height: auto !important;
+        }
+        
+        /* Forçar conteúdo do hero para cima */
+        #hero > *, .hero > *, #hero > div, .hero > div,
+        #hero section, .hero section,
+        #hero .container, .hero .container,
+        #hero [class*="container"], .hero [class*="container"] {
+          padding-top: 0 !important;
+          margin-top: -30px !important;
+        }
+        
+        /* Badge - subir próximo ao header */
+        #hero .inline-flex, .hero .inline-flex,
+        #hero [class*="inline-flex"], .hero [class*="inline-flex"],
+        #hero .rounded-full, .hero .rounded-full,
+        #hero [class*="bg-ur-blue"], .hero [class*="bg-ur-blue"] {
+          margin-top: -20px !important;
+          margin-bottom: 5px !important;
+          padding-top: 0 !important;
+        }
+        
+        /* Títulos sem margem superior */
+        #hero h1, .hero h1, #hero h2, .hero h2, #hero h3, .hero h3,
+        #hero .title, .hero .title, #hero [class*="title"], .hero [class*="title"] {
+          margin-top: 0 !important;
+          padding-top: 0 !important;
+          margin-bottom: 8px !important;
+        }
+        
+        /* Slider colado no topo com altura fixa de 300px */
+        #hero .slider, .hero .slider, #hero [class*="slider"], .hero [class*="slider"],
+        #hero .carousel, .hero .carousel, #hero [class*="carousel"], .hero [class*="carousel"] {
+          padding-top: 0 !important;
+          margin-top: -5px !important;
+          margin-bottom: 10px !important;
+          height: 300px !important;
+          min-height: 300px !important;
+          max-height: 300px !important;
+        }
+        
+        /* Slides com altura completa */
+        #hero .swiper-wrapper, .hero .swiper-wrapper,
+        #hero .slides, .hero .slides,
+        #hero [class*="slides"], .hero [class*="slides"] {
+          height: 100% !important;
+        }
+        
+        #hero .swiper-slide, .hero .swiper-slide,
+        #hero .slide, .hero .slide,
+        #hero [class*="slide"], .hero [class*="slide"] {
+          height: 100% !important;
+          min-height: 100% !important;
+        }
+        
+        /* Ponteiros/indicadores do slider menores e reposicionados */
+        #hero .swiper-pagination, .hero .swiper-pagination,
+        #hero [class*="pagination"], .hero [class*="pagination"],
+        #hero .dots, .hero .dots,
+        #hero [class*="dots"], .hero [class*="dots"],
+        #hero .indicators, .hero .indicators {
+          bottom: -20px !important;
+          top: auto !important;
+          position: relative !important;
+          margin-top: 10px !important;
+        }
+        
+        #hero .swiper-pagination-bullet, .hero .swiper-pagination-bullet,
+        #hero [class*="bullet"], .hero [class*="bullet"],
+        #hero .dot, .hero .dot,
+        #hero [class*="dot"], .hero [class*="dot"] {
+          width: 8px !important;
+          height: 8px !important;
+          margin: 0 4px !important;
+        }
+        
+        /* Slides individuais */
+        #hero .slide, .hero .slide, #hero [class*="slide"], .hero [class*="slide"],
+        #hero .swiper-slide, .hero .swiper-slide {
+          padding-top: 0 !important;
+          margin-top: 0 !important;
+        }
+        
+        /* Textos do slider com espaçamento do botão */
+        #hero .slide p, .hero .slide p, #hero .slide h3, .hero .slide h3,
+        #hero .slide span, .hero .slide span,
+        #hero .slide h1, .hero .slide h1,
+        #hero .slide h2, .hero .slide h2,
+        #hero .slide .text, .hero .slide .text,
+        #hero .slide .description, .hero .slide .description {
+          margin-top: 0 !important;
+          padding-top: 0 !important;
+          margin-bottom: 20px !important;
+          padding-bottom: 10px !important;
+        }
+        
+        /* Botão do slider separado dos textos */
+        #hero .slide button, .hero .slide button,
+        #hero .slide a[class*="button"], .hero .slide a[class*="button"],
+        #hero .slide .btn, .hero .slide .btn,
+        #hero .slide a:last-child, .hero .slide a:last-child {
+          margin-top: 15px !important;
+          margin-bottom: 10px !important;
+        }
+        
+        /* Botões do hero empilhados em mobile */
+        #hero .buttons, .hero .buttons,
+        #hero .cta, .hero .cta {
+          display: flex !important;
+          flex-direction: column !important;
+          gap: 12px !important;
+          align-items: center !important;
+          justify-content: center !important;
+          width: 100% !important;
+          margin-top: 10px !important;
+        }
+        
+        #hero button, .hero button,
+        #hero a[class*="button"], .hero a[class*="button"] {
+          width: 100% !important;
+          max-width: 280px !important;
+          padding: 14px 24px !important;
+          font-size: 14px !important;
+        }
+        
+        /* Reduzir altura de elementos h-full no hero */
+        #hero .h-full, .hero .h-full,
+        #hero [class*="h-full"], .hero [class*="h-full"] {
+          height: 70% !important;
+          min-height: auto !important;
+        }
+      }
+      
+      /* Telas muito pequenas */
+      @media screen and (max-width: 480px) {
+        #hero, .hero, [class*="hero"] {
+          padding-top: 0 !important;
+          padding-bottom: 20px !important;
+        }
+        
+        #hero > div, .hero > div,
+        #hero .container, .hero .container {
+          margin-top: -20px !important;
+          padding: 5px 12px !important;
+        }
+        
+        #hero .badge, .hero .badge,
+        #hero [class*="badge"], .hero [class*="badge"] {
+          margin-top: -15px !important;
+          margin-bottom: 5px !important;
+        }
+        
+        #hero h1, .hero h1, [class*="hero"] h1 {
+          font-size: 22px !important;
+          margin-top: 0 !important;
+          margin-bottom: 8px !important;
+        }
+        
+        #hero h2, .hero h2, [class*="hero"] h2 {
+          font-size: 16px !important;
+          margin-top: 0 !important;
+          margin-bottom: 10px !important;
+        }
+        
+        #hero h3, .hero h3, [class*="hero"] h3,
+        #hero p, .hero p, [class*="hero"] p {
+          font-size: 13px !important;
+        }
+        
+        #hero .slider, .hero .slider,
+        #hero [class*="slider"], .hero [class*="slider"] {
+          margin-top: -5px !important;
+          padding-top: 0 !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script>
+      // Aguarda o carregamento completo da página
+      window.addEventListener('load', function() {
+        // Mostra domínio atual no console
+        console.log('Domínio atual:', window.location.hostname);
+        console.log('URL completa:', window.location.href);
+        
+        // Procura pelo botão "Solicitar Proposta"
+        const findButton = () => {
+          const buttons = document.querySelectorAll('button, a');
+          for (let btn of buttons) {
+            if (btn.textContent.includes('Solicitar Proposta')) {
+              return btn;
+            }
+          }
+          return null;
+        };
+        
+        // Tenta encontrar o botão a cada 500ms por até 5 segundos
+        let attempts = 0;
+        const maxAttempts = 10;
+        
+        const tryAddButton = () => {
+          const targetBtn = findButton();
+          if (targetBtn && targetBtn.parentElement) {
+            // Cria o novo botão copiando as classes do botão existente
+            const loginBtn = document.createElement('a');
+            loginBtn.href = 'https://urcobra.com.br/login';
+            loginBtn.textContent = 'Logar/Criar Conta';
+            
+            // Adiciona classe moderna ao botão
+            loginBtn.classList.add('btn-login-modern');
+            
+            // Copia todas as classes do botão "Solicitar Proposta"
+            if (targetBtn.className) {
+              loginBtn.className = targetBtn.className + ' btn-login-modern';
+            }
+            
+            loginBtn.style.marginLeft = '12px';
+            
+            // Insere o botão após o botão "Solicitar Proposta"
+            targetBtn.parentElement.insertBefore(loginBtn, targetBtn.nextSibling);
+          } else if (attempts < maxAttempts) {
+            attempts++;
+            setTimeout(tryAddButton, 500);
+          }
+        };
+        
+        // Cria botão de menu hambúrguer para mobile
+        const createMobileMenuToggle = () => {
+          // Verifica se está no domínio correto
+          const currentDomain = window.location.hostname;
+          const allowedDomains = ['urcobra.com.br', 'www.urcobra.com.br', 'localhost', '127.0.0.1'];
+          
+          // Se não for domínio autorizado, mostra alerta
+          if (!allowedDomains.includes(currentDomain) && !currentDomain.includes('urcobra')) {
+            alert('Atenção: Você está acessando de um domínio não autorizado (' + currentDomain + ').\nPara sua segurança, acesse apenas https://urcobra.com.br');
+          }
+          
+          const header = document.querySelector('header, .header, [class*="header"]');
+          const nav = document.querySelector('header nav, .header nav, [class*="header"] nav, header ul, .header ul');
+          
+          if (header && !header.querySelector('.menu-toggle')) {
+            // Cria o botão hambúrguer
+            const toggleBtn = document.createElement('button');
+            toggleBtn.className = 'menu-toggle';
+            toggleBtn.setAttribute('aria-label', 'Menu');
+            toggleBtn.innerHTML = '<span></span><span></span><span></span>';
+            header.appendChild(toggleBtn);
+            
+            // Cria overlay
+            let overlay = document.querySelector('.menu-overlay');
+            if (!overlay) {
+              overlay = document.createElement('div');
+              overlay.className = 'menu-overlay';
+              document.body.appendChild(overlay);
+            }
+            
+            // Cria painel mobile se tiver navegação
+            let mobilePanel = document.querySelector('.mobile-nav-panel');
+            if (!mobilePanel && nav) {
+              mobilePanel = document.createElement('div');
+              mobilePanel.className = 'mobile-nav-panel';
+              // Clona os links do menu original
+              const links = nav.querySelectorAll('a');
+              links.forEach(link => {
+                const newLink = document.createElement('a');
+                newLink.href = link.href;
+                newLink.textContent = link.textContent;
+                mobilePanel.appendChild(newLink);
+              });
+              
+              // Adiciona botão Logar/Criar Conta no final
+              const loginLink = document.createElement('a');
+              loginLink.href = 'https://urcobra.com.br/login';
+              loginLink.textContent = 'Logar/Criar Conta';
+              loginLink.style.cssText = 'background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 12px 20px !important; border-radius: 25px; text-align: center; margin-top: 10px; font-weight: 600;';
+              mobilePanel.appendChild(loginLink);
+              
+              document.body.appendChild(mobilePanel);
+            }
+            
+            // Evento de click no hambúrguer
+            toggleBtn.addEventListener('click', function() {
+              toggleBtn.classList.toggle('active');
+              if (mobilePanel) mobilePanel.classList.toggle('active');
+              if (overlay) overlay.classList.toggle('active');
+            });
+            
+            // Fecha ao clicar no overlay
+            if (overlay) {
+              overlay.addEventListener('click', function() {
+                toggleBtn.classList.remove('active');
+                if (mobilePanel) mobilePanel.classList.remove('active');
+                overlay.classList.remove('active');
+              });
+            }
+            
+            // Fecha ao clicar em um link
+            if (mobilePanel) {
+              mobilePanel.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                  toggleBtn.classList.remove('active');
+                  mobilePanel.classList.remove('active');
+                  if (overlay) overlay.classList.remove('active');
+                });
+              });
+            }
+          }
+        };
+        
+        setTimeout(tryAddButton, 1000);
+        setTimeout(createMobileMenuToggle, 1500);
+        
+        // Força estilos no hero via JavaScript (sobrescreve React)
+        const forceHeroStyles = () => {
+          console.log('Aplicando estilos mobile...');
+          if (window.innerWidth <= 768) {
+            console.log('Largura mobile detectada:', window.innerWidth);
+            
+            // Remove padding do inicio/hero
+            const inicio = document.querySelector('#inicio');
+            if (inicio) {
+              console.log('Elemento #inicio encontrado');
+              inicio.style.setProperty('padding-top', '0px', 'important');
+              inicio.style.setProperty('margin-top', '0px', 'important');
+              inicio.style.setProperty('min-height', 'auto', 'important');
+            }
+            
+            // Badge - inline-flex
+            const badges = document.querySelectorAll('#inicio .inline-flex, #inicio [class*="inline-flex"]');
+            console.log('Badges encontrados:', badges.length);
+            badges.forEach(badge => {
+              badge.style.setProperty('margin-top', '-30px', 'important');
+              badge.style.setProperty('margin-bottom', '5px', 'important');
+              badge.style.setProperty('padding-top', '0px', 'important');
+            });
+            
+            // Aplica estilos diretamente no hero
+            const hero = document.querySelector('#hero, .hero, [class*="hero"]');
+            if (hero) {
+              hero.style.paddingTop = '0px';
+              hero.style.marginTop = '0px';
+              
+              // Força container para cima
+              const containers = hero.querySelectorAll('div, section, .container');
+              containers.forEach(el => {
+                el.style.marginTop = '-30px';
+                el.style.paddingTop = '0px';
+              });
+              
+              // Badge colado no topo
+              const badges = hero.querySelectorAll('.badge, [class*="badge"], [class*="tag"], [class*="pill"]');
+              badges.forEach(badge => {
+                badge.style.marginTop = '-25px';
+                badge.style.marginBottom = '5px';
+              });
+              
+              // Títulos sem margem
+              const titles = hero.querySelectorAll('h1, h2, h3, .title');
+              titles.forEach(title => {
+                title.style.marginTop = '0px';
+                title.style.paddingTop = '0px';
+                title.style.marginBottom = '8px';
+              });
+              
+              // Slider com altura 300px
+              const sliders = hero.querySelectorAll('.slider, [class*="slider"], .carousel, [class*="carousel"]');
+              sliders.forEach(slider => {
+                slider.style.height = '300px';
+                slider.style.minHeight = '300px';
+                slider.style.maxHeight = '300px';
+                slider.style.marginTop = '-5px';
+              });
+              
+              // Textos do slider com espaçamento
+              const slideTexts = hero.querySelectorAll('.slide p, .slide h3, .slide span, [class*="slide"] p, [class*="slide"] h3');
+              slideTexts.forEach(text => {
+                text.style.marginTop = '0px';
+                text.style.marginBottom = '20px';
+                text.style.paddingBottom = '10px';
+              });
+              
+              // Botões do slider separados
+              const slideButtons = hero.querySelectorAll('.slide button, .slide a, [class*="slide"] button, [class*="slide"] a');
+              slideButtons.forEach(btn => {
+                btn.style.marginTop = '15px';
+                btn.style.marginBottom = '10px';
+              });
+            }
+          }
+        };
+        
+        // Executa após React renderizar
+        setTimeout(forceHeroStyles, 2000);
+        setTimeout(forceHeroStyles, 3000);
+        
+        // Aplica estilos a cada 500ms por 10 segundos (vence React)
+        let styleInterval = setInterval(forceHeroStyles, 500);
+        setTimeout(() => clearInterval(styleInterval), 10000);
+        
+        // Observa mudanças no DOM e reaplica
+        const observer = new MutationObserver((mutations) => {
+          forceHeroStyles();
+        });
+        
+        setTimeout(() => {
+          const inicio = document.querySelector('#inicio');
+          if (inicio) {
+            observer.observe(inicio, { attributes: true, childList: true, subtree: true });
+          }
+        }, 2000);
+        
+        // Injeta CSS dinâmico no head para forçar estilos (sobrescreve React)
+        const injectDynamicCSS = () => {
+          const style = document.createElement('style');
+          style.textContent = `
+            @media screen and (max-width: 768px) {
+              #inicio, section#inicio {
+                padding-top: 0 !important;
+                margin-top: 0 !important;
+                min-height: auto !important;
+              }
+              #inicio .inline-flex, #inicio [class*="inline-flex"] {
+                margin-top: -30px !important;
+                margin-bottom: 5px !important;
+                padding-top: 0 !important;
+              }
+              #inicio h1, #inicio h2, #inicio h3 {
+                margin-top: 0 !important;
+                padding-top: 0 !important;
+                margin-bottom: 8px !important;
+              }
+              #inicio .slider, #inicio [class*="slider"] {
+                height: 280px !important;
+                min-height: 280px !important;
+                max-height: 280px !important;
+              }
+              #inicio button[class*="pointer-events-auto"],
+              #inicio button[aria-label*="Slide"],
+              #inicio button svg[class*="lucide-chevron"] {
+                display: none !important;
+              }
+            }
+          `;
+          document.head.appendChild(style);
+        };
+        
+        // Executa após React renderizar
+        setTimeout(injectDynamicCSS, 2500);
+        setTimeout(injectDynamicCSS, 4000);
+      });
+    </script>
+  </body>
+</html>
